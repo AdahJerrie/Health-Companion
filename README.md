@@ -1,88 +1,85 @@
 # 🩺 Health Companion
-
-A simple health companion web app built with **React + Express**.  
-It helps users perform quick consultations based on symptoms, receive advice, see tailored warnings, explore relief options, and keep a history of past consultations.
-
+A simple AI-assisted health consultation app that helps users log symptoms, receive tailored advice, and track their consultation history.  
+Built with **React (frontend)** and **Express.js (backend)**.
 ---
-
 ## 🚀 Features
-- **Symptom Consultation**: Users can input symptoms, age, and medical history.
-- **AI/Rule-Based Engine**: Provides advice, relief options, and confidence scores.
-- **Tailored Warnings**: Adjusts based on user’s age and medical history.
-- **Results Persistence**: Consultations are stored and can be viewed later.
-- **History Tracking**: Users can revisit their consultation sessions.
-- **Relief Selection**: Track remedies you’ve chosen from the suggestions.
+- **Symptom Consultation**  
+  Enter symptoms, age, and medical history to receive:
+  - Tailored advice
+  - Confidence score
+  - Context-aware warnings
+  - Relief options (OTC, home remedies, lifestyle changes)
 
+- **Consultation Results**  
+  View detailed consultation outcomes with confidence levels and safety notes.
+
+- **History Tracking**  
+  Access past consultations and add relief actions to track your wellness journey.
+
+- **AI / Rules Engine**  
+  - Knowledge base of common conditions (headache, fever, cough, etc.)  
+  - Rule-based personalization (e.g., age, medical conditions)  
+  - Confidence scoring and tailored warnings  
 ---
 
-## 🛠 Tech Stack
-- **Frontend**: React, TailwindCSS  
-- **Backend**: Node.js, Express  
-- **Storage**: In-memory (no database yet — MVP phase)  
-- **Deployment**: Vercel (Frontend) + (Backend planned for Node hosting or Vercel functions)
 
----
 
-## 📦 Setup
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/AdahJerrie/health-companion.git
+
+## ⚙️ Setup
+
+ 1. Clone the repository
+
+git clone https://github.com/yourusername/health-companion.git
 cd health-companion
-2. Install dependencies
-For both frontend and backend folders:
 
-bash
-Copy
-Edit
-npm install
-3. Run backend
+2. Backend Setup
 bash
 Copy
 Edit
 cd backend
+npm install
 npm start
-Backend runs at: http://localhost:5000
+Runs the backend API at:
+👉 http://localhost:5000
 
-4. Run frontend
+3. Frontend Setup
 bash
 Copy
 Edit
 cd frontend
+npm install
 npm run dev
-Frontend runs at: http://localhost:5173
+Runs the React app at:
+👉 http://localhost:5173 (Vite default)
 
-📊 Example Consultation Flow
-Enter symptom: fever
 
-Enter age and medical history (optional).
+📖 Usage
+Open the app in your browser.
 
-Get:
+Navigate to the Consultation page.
 
-Advice: Drink fluids, rest...
+Enter your symptom, age, and optional medical history.
 
-Warning: Seek a doctor if fever persists...
+Submit to receive tailored advice, warnings, and relief suggestions.
 
-Relief Options: Acetaminophen, Hydration...
+View results in the Results section.
 
-Confidence Score: 0.9
+Revisit past consultations in the History page.
 
-Results are saved and available in the Results or History pages.
+🛠 Tech Stack
+Frontend: React + Vite + TailwindCSS
 
-🗺 Roadmap
-✅ MVP with consultations, results, history
+Backend: Node.js + Express.js
 
-⏳ Add persistent database (MongoDB/Postgres)
+Storage: In-memory (demo purpose, no database yet)
 
-⏳ Expand knowledge base of conditions
+✅ Current Status
+This is an MVP (Minimum Viable Product):
 
-⏳ Authentication (users can log in to save sessions)
+Basic rule-based AI engine
 
-⏳ AI-enhanced reasoning engine
+Consultation, results, and history fully wired
 
-🤝 Contribution
-This project started as a learning + building journey.
-Feel free to fork, suggest improvements, or open PRs!
+Ready for GitHub deployment and hosting (Vercel + backend service)
 
-📜 License
-MIT License

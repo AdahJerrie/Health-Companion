@@ -43,10 +43,17 @@ const knowledgeBase = {
 };
 
 // POST /api/consultation
+// In the POST /api/consultation route:
 app.post("/api/consultation", (req, res) => {
   const { symptom, age, medicalHistory = [] } = req.body;
   const normalizedSymptom = symptom?.toLowerCase();
 
+  // Add debug logging
+  console.log('Received symptom:', symptom);
+  console.log('Normalized symptom:', normalizedSymptom);
+  console.log('Knowledge base entry:', knowledgeBase[normalizedSymptom]);
+
+  // ..
   let advice = "Rest and monitor your symptoms carefully.";
   let warning = "Seek medical attention if symptoms worsen.";
   let reliefOptions = [
@@ -56,12 +63,16 @@ app.post("/api/consultation", (req, res) => {
   let confidence = 0.4; // default low confidence
 
   // ✅ Look up in knowledge base
-  if (knowledgeBase[normalizedSymptom]) {
-    advice = knowledgeBase[normalizedSymptom].advice;
-    warning = knowledgeBase[normalizedSymptom].warning;
-    reliefOptions = knowledgeBase[normalizedSymptom].reliefOptions;
-    confidence = 0.9;
-  }
+  // Replace the knowledge base check with:
+if (normalizedSymptom && knowledgeBase[normalizedSymptom]) {
+  console.log('Match found in knowledge base');
+  advice = knowledgeBase[normalizedSymptom].advice;
+  warning = knowledgeBase[normalizedSymptom].warning;
+  reliefOptions = knowledgeBase[normalizedSymptom].reliefOptions;
+  confidence = 0.9;
+} else {
+  console.log('No match found in knowledge base');
+}
 
   // ✅ Rule-based personalization
   if (age && age > 65) {
