@@ -1,13 +1,14 @@
-// src/pages/Results.jsx  (full file)
+// src/pages/Results.jsx
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 export default function Results() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { id: paramId } = useParams(); // 👈 support /results/:id
   const stateSessionId = location.state?.sessionId;
 
   const [result, setResult] = useState(null);
@@ -16,17 +17,16 @@ export default function Results() {
   useEffect(() => {
     const load = async () => {
       try {
-        // 1) Prefer session id passed via route state
-        let sid = stateSessionId;
+        // 1) Prefer state param
+        let sid = stateSessionId || paramId;
 
-        // 2) Fallback: look in localStorage
+        // 2) Fallback: localStorage
         if (!sid) {
           const stored = localStorage.getItem("lastSessionId");
           if (stored) sid = parseInt(stored, 10);
         }
 
         if (sid) {
-          // fetch the specific session result
           const res = await fetch(`http://localhost:5000/api/results/${sid}`);
           if (res.ok) {
             const data = await res.json();
@@ -35,7 +35,7 @@ export default function Results() {
           }
         }
 
-        // 3) Final fallback: pull the latest result from the list
+        // 3) Fallback: latest in results list
         const resAll = await fetch("http://localhost:5000/api/results");
         const all = await resAll.json();
         if (Array.isArray(all) && all.length > 0) {
@@ -51,7 +51,7 @@ export default function Results() {
     };
 
     load();
-  }, [stateSessionId]);
+  }, [stateSessionId, paramId]);
 
   const noResults = !result;
 
@@ -77,19 +77,17 @@ export default function Results() {
 
       {!loading && !noResults && (
         <>
-          {/* Symptoms */}
+          {/* Symptom */}
           <motion.div
             className="bg-white rounded-xl shadow-md p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
             <h2 className="font-semibold text-lg text-gray-800 mb-3">
-              Your Reported Symptoms:
+              Your Reported Symptom:
             </h2>
             <p className="text-gray-700">
-              {Array.isArray(result.symptoms)
-                ? result.symptoms.join(", ")
-                : String(result.symptoms || "")}
+              {result.symptom || "N/A"}
             </p>
           </motion.div>
 
