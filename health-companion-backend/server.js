@@ -161,10 +161,8 @@ app.delete("/api/history/clear", (req, res) => {
   res.json({ success: true, message: "All consultation history cleared." });
 });
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 export default app;
