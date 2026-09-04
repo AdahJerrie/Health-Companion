@@ -27,7 +27,7 @@ export default function Results() {
         }
 
         if (sid) {
-          const res = await fetch(`http://localhost:5000/api/results/${sid}`);
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/api/results/${sid}`);
           if (res.ok) {
             const data = await res.json();
             setResult(data);
@@ -36,7 +36,7 @@ export default function Results() {
         }
 
         // 3) Fallback: latest in results list
-        const resAll = await fetch("http://localhost:5000/api/results");
+        const resAll = await fetch(`${import.meta.env.VITE_API_URL}/api/results`);
         const all = await resAll.json();
         if (Array.isArray(all) && all.length > 0) {
           setResult(all[all.length - 1]);
