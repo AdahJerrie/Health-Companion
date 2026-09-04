@@ -6,7 +6,7 @@ export default function History() {
   const [openSession, setOpenSession] = useState(null);
 
   const fetchHistory = () => {
-    fetch("http://localhost:5000/api/results")
+    fetch(`${import.meta.env.VITE_API_URL}/api/results`)
       .then(res => res.json())
       .then(data => setHistory(data))
       .catch(err => console.error("Error fetching history:", err));
@@ -23,7 +23,7 @@ export default function History() {
   const handleClearHistory = async () => {
     if (!window.confirm("Are you sure you want to clear all history?")) return;
     try {
-      await fetch("http://localhost:5000/api/history/clear", { method: "DELETE" });
+      await fetch(`${import.meta.env.VITE_API_URL}/api/history/clear`, { method: "DELETE" });
       setHistory([]);
       setOpenSession(null);
       alert("All consultation history cleared ✅");
