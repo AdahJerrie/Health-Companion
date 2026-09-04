@@ -19,7 +19,7 @@ export default function Consultation() {
       const res = await fetch("http://localhost:5000/api/consultation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ symptoms: symptomsArray, age, medicalHistory }),
+        body: JSON.stringify({ symptom: symptomsArray, age, medicalHistory }),
       });
       const data = await res.json();
 
