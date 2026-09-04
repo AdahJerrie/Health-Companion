@@ -16,7 +16,7 @@ export default function Consultation() {
         .map((s) => s.trim())
         .filter(Boolean);
 
-      const res = await fetch("http://localhost:5000/api/consultation", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/consultation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ symptoms: symptomsArray, age, medicalHistory }),
