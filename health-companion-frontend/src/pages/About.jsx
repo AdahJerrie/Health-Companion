@@ -6,7 +6,7 @@ function About() {
       <p className="text-gray-600">
         Health Companion is an AI-powered tool that helps you understand your symptoms, provides safe relief suggestions, and guides you toward appropriate care.
       </p>
-      <p className="text-gray-400 mt-2">[Project details and disclaimers will go here]</p>
+      {/* <p className="text-gray-400 mt-2">[Project details and disclaimers will go here]</p> */}
     </div>
   );
 }
